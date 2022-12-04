@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "View" %}{% endblock title %}
+{% block content %}
+<div class="card">
+	<div class="card-header">			
+		<h3><strong>{% trans "category" %}</strong>&nbsp: {{ question.teststask.category }}</h3>
+		<h3><strong>{% trans "title" %}</strong>&nbsp: {{ question.teststask.title }}</h3>
+	</div>
+	<div class="card-body">
+		<table>			
+			<tr>
+				<td><strong>{% trans "question" %}</strong>&nbsp:</td>
+				<td>{{ question.question }}</td>
+			</tr>
+			{% if question.photo.url != None %}
+			<tr>		
+				<td></td> 
+				<td><img style="width:100%; max-width:400px;" src="{{ question.photo.url}}" alt="{{ question.teststask.title }}"></td>
+			</tr>
+			{% endif %}	        
+			<tr>
+				<td><strong>{% trans "reply1" %}</strong>&nbsp:</td>
+				<td>{{ question.reply1 }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "ok1" %}</strong>&nbsp:</td>
+				<td>{{ question.ok1 }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "reply2" %}</strong>&nbsp:</td>
+				<td>{{ question.reply2 }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "ok2" %}</strong>&nbsp:</td>
+				<td>{{ question.ok2 }}</td>
+			</tr>
+			{% if question.reply3 != "" %}
+			<tr>
+				<td><strong>{% trans "reply3" %}</strong>&nbsp:</td>
+				<td>{{ question.reply3 }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "ok3" %}</strong>&nbsp:</td>
+				<td>{{ question.ok3 }}</td>
+			</tr>
+			{% endif %}	 
+			{% if question.reply4 != "" %}
+			<tr>
+				<td><strong>{% trans "reply4" %}</strong>&nbsp:</td>
+				<td>{{ question.reply4 }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "ok4" %}</strong>&nbsp:</td>
+				<td>{{ question.ok4 }}</td>
+			</tr>
+			{% endif %}	 
+			{% if question.reply5 != "" %}
+			<tr>
+				<td><strong>{% trans "reply5" %}</strong>&nbsp:</td>
+				<td>{{ question.reply5 }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "ok5" %}</strong>&nbsp:</td>
+				<td>{{ question.ok5 }}</td>
+			</tr>
+			{% endif %}	 
+		</table>
+	</div>
+	<div class="card-footer">				
+	</div>		
+</div>
+<br>
+<a class="btn btn-outline-info" style="width:100px" href="{% url 'question_index' teststask_id%}">{% trans "Back" %}</a>    			
+{% endblock content %}

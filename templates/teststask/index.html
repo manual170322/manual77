@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "List" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "teststask" %}</h2>
+{% if teststask.count > 0 %}
+<div class="row">
+	<table id="myTable" class="cell-border hover stripe" style="width:100%">
+		<thead>
+			<tr>
+				<th>{% trans "category_title" %}</th>
+				<th>{% trans "teststask_title" %}</th>
+				<th>{% trans "minutes" %}</th>
+				<th>{% trans "limit" %}</th>
+				<th>{% trans "questions" %}</th>
+				<th><a href="{% url 'teststask_create'%}">{% trans "Create" %}</a></th>				
+			</tr>
+		</thead>
+		<tbody>
+			{% for p in teststask %}
+			<tr>
+				<td>{{ p.category }}</td>
+				<td>{{ p.title }}</td>
+				<td>{{ p.minutes }}</td>
+				<td>{{ p.limit }}</td>
+				<td><a href="{% url 'question_index' p.id %}">{% trans "questions" %}</a></td>			
+				<td>
+					<a href="{% url 'teststask_edit' p.id %}">{% trans "Change" %}</a> |
+					<a href="{% url 'teststask_read' p.id %}">{% trans "View" %}</a> |
+					<a onclick="return confirm('Удалить запись?')" href="{% url 'teststask_delete' p.id %}">{% trans "Delete" %}</a>
+				</td>			
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<a href="{% url 'teststask_create'%}">{% trans "Create" %}</a>
+{% endif %}
+{% endblock content %}
+

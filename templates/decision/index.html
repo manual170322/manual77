@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "List" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "decisions" %}</h2>
+{% if decision.count > 0 %}
+<div class="row">
+	<table id="myTable" class="cell-border hover stripe" style="width:100%">
+		<thead>
+			<tr>
+				<th>{% trans "dated" %}</th>
+				<th>{% trans "user" %}</th>
+				<th>{% trans "title" %}</th>
+				<th>{% trans "solution" %}</th>
+				<th>{% trans "rating" %}</th>				
+				<th></th>				
+			</tr>
+		</thead>
+		<tbody>
+			{% for p in decision %}
+			<tr>
+				<td>{{ p.dated| date:"d.m.Y" }}</td>					
+				<td>{{ p.user }}</td>					
+				<td>{{ p.title }}</td>					
+				<td>{{ p.solution }}</td>					
+				<td>
+				{% if p.rating != None %}										
+					{{ p.rating }}
+				{% endif %}	
+				</td>			
+				<td>
+					<a href="{% url 'decision_edit' p.id %}">{% trans "Change" %}</a> |
+					<a href="{% url 'decision_read' p.id %}">{% trans "View" %}</a> 					
+				</td>							
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>	
+</div>
+{% else %}
+
+{% endif %}
+{% endblock content %}
+

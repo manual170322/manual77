@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "List" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "category" %}</h2>
+{% if category.count > 0 %}
+<div class="row">
+	<table id="myTable" class="cell-border hover stripe" style="width:100%">
+		<thead>
+			<tr>
+				<th>{% trans "сategory_title" %}</th>
+				<th><a href="{% url 'category_create'%}">{% trans "Create" %}</a></th>				
+			</tr>
+		</thead>
+		<tbody>
+			{% for p in category %}
+			<tr>
+				<td>{{ p.title }}</td>
+				<td>
+					<a href="{% url 'category_edit' p.id %}">{% trans "Change" %}</a> |
+					<a href="{% url 'category_read' p.id %}">{% trans "View" %}</a> |
+					<a onclick="return confirm('Удалить запись?')" href="{% url 'category_delete' p.id %}">{% trans "Delete" %}</a>
+				</td>			
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<a href="{% url 'category_create'%}">{% trans "Create" %}</a>
+{% endif %}
+{% endblock content %}
+

@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% endblock title %}
+{% block header %}{% endblock header %} 
+{% block content %}
+<h1 align="center">{% trans "tasks" %}</h1>
+	<div class="container">
+		<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1" aria-selected="true">1</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab" aria-controls="tab2" aria-selected="false">2</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab" aria-controls="tab3" aria-selected="false">3</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button" role="tab" aria-controls="tab4" aria-selected="false">4</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab5" type="button" role="tab" aria-controls="tab5" aria-selected="false">5</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab6" type="button" role="tab" aria-controls="tab6" aria-selected="false">6</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab7" type="button" role="tab" aria-controls="tab7" aria-selected="false">7</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab8" type="button" role="tab" aria-controls="tab8" aria-selected="false">8</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab9" type="button" role="tab" aria-controls="tab9" aria-selected="false">9</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tab10" type="button" role="tab" aria-controls="tab10" aria-selected="false">10</button>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="home-tab">
+				<h3>Задача №1</h3>
+					<p></p>
+					<form name="form1" id="form1"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision1" id="decision1" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">{% trans "Apply" %}</button>
+						</div>				
+					</form>
+			</div>
+			<div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="profile-tab">
+				<h3>Задача №2</h3>
+					<p></p>
+					<form name="form2" id="form2"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision2" id="decision2" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>			
+			</div>
+			<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="contact-tab">
+				<h3>Задача №3</h3>
+					<p></p>
+					<p>Запустить бесконечный цикл.</p>
+					<form name="form3" id="form3"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision3" id="decision3" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>				
+			</div>
+			<div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="contact-tab">
+				<h3>Задача №4</h3>
+					<p></p>
+					<form name="form4" id="form4"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision4" id="decision4" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>
+			</div>
+			<div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="contact-tab">
+				<h3>Задача №5</h3>
+					<p></p>
+					<form name="form5" id="form5"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision5" id="decision5" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>
+			</div>
+			<div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="contact-tab">
+				<h3>Задача №6</h3>
+					<p></p>
+					<form name="form6" id="form6"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision6" id="decision6" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>
+			</div>
+			<div class="tab-pane fade" id="tab7" role="tabpanel" aria-labelledby="contact-tab">
+				<h3>Задача №7</h3>
+					<p></p>
+					<form name="form7" id="form7"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision7" id="decision7" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>
+			</div>
+			<div class="tab-pane fade" id="tab8" role="tabpanel" aria-labelledby="contact-tab">
+				<h3>Задача №8</h3>
+					<p></p>
+					<form name="form8" id="form8"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision8" id="decision8" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>
+			</div>
+			<div class="tab-pane fade" id="tab9" role="tabpanel" aria-labelledby="contact-tab">
+				<h3>Задача №9</h3>
+					<p></p>
+					<form name="form9" id="form9"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision9" id="decision9" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>
+			</div>
+			<div class="tab-pane fade" id="tab10" role="tabpanel" aria-labelledby="contact-tab">
+				<h3>Задача №10</h3>
+					<p></p>
+					<form name="form10" id="form10"	method="post">
+						{% csrf_token %}
+						<div align="center">
+							<h4>Введите ответ:</h4>	
+							<textarea name="decision10" id="decision10" cols="100" rows="10"></textarea>
+						</div>	
+						<br>
+						<div align="center">
+							<button type="submit" onclick="return confirm('Отправить решение?')" class="btn btn-outline-success" style="width:100px">apply</button>
+						</div>				
+					</form>
+			</div>
+		</div>		
+	</div>
+{% endblock content %}

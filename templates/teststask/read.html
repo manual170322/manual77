@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "View" %}{% endblock title %}
+{% block content %}
+<h2>{% trans "teststask" %}</h2>
+<div class="card">
+	<div class="card-header">			
+		<h3><strong>{% trans "category" %}</strong>&nbsp: {{ teststask.category }}</h3>
+		<h3><strong>{% trans "title" %}</strong>&nbsp: {{ teststask.title }}</h3>
+	</div>
+	<div class="card-body">
+		<table>			
+			<tr>
+				<td><strong>{% trans "details" %}</strong>&nbsp:</td>
+				<td>{{ teststask.details }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "minutes" %}</strong>&nbsp:</td>
+				<td>{{ teststask.minutes }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "limit" %}</strong>&nbsp:</td>
+				<td>{{ teststask.limit }}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="card-footer">				
+	</div>			
+</div>
+<br>
+<a class="btn btn-outline-info" style="width:100px" href="{% url 'teststask_index' %}">{% trans "Back" %}</a>    	
+{% endblock content %}

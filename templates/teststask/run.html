@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "run test" %}{% endblock title %}
+{% block content %}
+<h2>{{ teststask_title }}</h2>
+{% if question.count > 0 %}
+	<form class="form-horizontal" enctype="multipart/form-data" method="post">
+		{% csrf_token %}
+	<div>
+		<input type="hidden" id="minute" value="{{ minutes }}">				
+		<p id="display" style="font-weight: bold"><strong>{{ minutes }}</strong></p>
+	</div>			
+
+	<h3>{{ question.question }}</h3>
+
+	{% for q in question %}
+	<div class="row" style="padding:5px;width:100%;">
+		<div class="card" style="width:100%">
+			<div class="card-header" id="heading{{ q.id }}">
+				<h5 class="mb-0">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{ q.id }}" aria-expanded="false" aria-controls="collapse{{ q.id }}">
+						{{ q.question }}
+					</button>
+				</h5>
+				{% if q.photo.url != None %}
+					<img style="width:100%; max-width:256px; padding:10px" src="{{ q.photo.url}}" alt="{{ p.id }}">
+				{% endif %}
+			</div>
+			<div id="collapse{{ q.id }}"  aria-labelledby="heading{{ q.id }}" data-parent="#accordion">
+				<div class="card-body">
+					{% if q.multi == True %}
+						<input type="checkbox"  name="cbox1{{ q.id }}" value="on1" /> {{ q.reply1 }}<br />
+						{% if q.reply2 != "" %}
+							<input type="checkbox"  name="cbox2{{ q.id }}" value="on2" /> {{ q.reply2 }}<br />
+						{% endif %}
+						{% if q.reply3 != "" %}						
+							<input type="checkbox"  name="cbox3{{ q.id }}" value="on3" /> {{ q.reply3 }}<br />
+						{% endif %}
+						{% if q.reply4 != "" %}						
+							<input type="checkbox"  name="cbox4{{ q.id }}" value="on4" /> {{ q.reply4 }}<br />
+						{% endif %}
+						{% if q.reply5 != "" %}						
+							<input type="checkbox"  name="cbox5{{ q.id }}" value="on5" /> {{ q.reply5 }}<br />
+						{% endif %}
+					{% else %}
+						<input type="radio"  name="radio{{ q.id }}" value="on1" /> {{ q.reply1 }}<br />
+						{% if q.reply2 != "" %}
+							<input type="radio"  name="radio{{ q.id }}" value="on2" /> {{ q.reply2 }}<br />
+						{% endif %}
+						{% if q.reply3 != "" %}
+							<input type="radio"  name="radio{{ q.id }}" value="on3" /> {{ q.reply3 }}<br />
+						{% endif %}
+						{% if q.reply4 != "" %}
+							<input type="radio"  name="radio{{ q.id }}" value="on4" /> {{ q.reply4 }}<br />
+						{% endif %}
+						{% if q.reply5 != "" %}
+							<input type="radio"  name="radio{{ q.id }}" value="on5" /> {{ q.reply5 }}<br />
+						{% endif %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+		<!--<a class="btn btn-outline-info" style="width:100px" href="{% url 'teststask_list' %}" onclick="return confirm('Завершить тест?')>{% trans "Back" %}</a>-->
+		<button type="submit" style="width:100px" id="accept_btn" name="accept_btn" class="btn btn-outline-success" onclick="return confirm('Завершить тест?')">{% trans "Accept" %}</button>
+		<button type="submit" hidden style="width:100px" id="accept_timer_btn" name="accept_timer_btn" class="btn btn-outline-success">{% trans "Timer" %}</button>
+	</form>
+
+{% else %}
+<a href="{% url 'category_create'%}">{% trans "Not question" %}</a>
+{% endif %}
+
+<script>
+	// Считать время выполнения
+	var y = parseInt(document.getElementById("minute").value);
+	// Запуск таймера 
+	timerRun(new Date(), y);	
+	// Таймер
+	function timerRun(t,x){		
+		// Установить время окончания работ: ко времени t добавить x минут
+		t.setMinutes(t.getMinutes() + x);
+		var countDownDate = new Date(t).getTime();
+		// Обратный отсчет обновляется каждую секунду
+		var x = setInterval(function() {
+			// Текущее время и дата
+			var now = new Date().getTime();
+			// Разница между дата останова таймера и текущей датой
+			var distance = countDownDate - now;
+			// Расчет дней, часов, минут, секунд
+			//var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			if (hours.toString().length==1) {hours = '0' + hours;};
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			if (minutes.toString().length==1) {minutes = '0' + minutes;};
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			if (seconds.toString().length==1) {seconds = '0' + seconds;};
+			// Вывод результата в элемент с id="display"
+			document.getElementById("display").innerHTML = + hours + ":" + minutes + ":" + seconds + "";
+			// Если отcчет времени завершен - принудительное завершениеы
+			if (distance < 0) {
+				clearInterval(x);
+				$("#accept_timer_btn").click();
+				alert("Timeout");
+			}
+		}, 1000);
+	}	
+</script>
+
+{% endblock content %}

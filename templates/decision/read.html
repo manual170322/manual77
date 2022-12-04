@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "View" %}{% endblock title %}
+{% block content %}
+<h2>{% trans "decisions" %}</h2>
+<div class="card">
+	<div class="card-header">			
+		<h3><strong>{% trans "user" %}</strong>&nbsp: {{ decision.user }}</h3>
+	</div>
+	<div class="card-body">
+		<table>
+			<tr>
+				<td><strong>{% trans "dated" %}</strong>&nbsp:</td>
+				<td>{{ decision.dated }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "title" %}</strong>&nbsp:</td>
+				<td>{{ decision.title }}</td>
+			</tr>
+			<tr>
+				<td><strong>{% trans "solution" %}</strong>&nbsp:</td>
+				<td>{{ decision.solution }}</td>
+			</tr>						
+			<tr>
+				<td><strong>{% trans "rating" %}</strong>&nbsp:</td>
+				<td>
+				{% if decision.rating != None %}										
+					{{ decision.rating }}
+				{% endif %}	
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="card-footer">				
+	</div>		
+</div>
+<br>
+<a class="btn btn-outline-info" style="width:100px" href="{% url 'decision_index' %}">{% trans "Back" %}</a>    	
+{% endblock content %}

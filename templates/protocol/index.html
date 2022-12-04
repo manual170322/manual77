@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "List" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "protocols" %}</h2>
+{% if protocol.count > 0 %}
+<div class="row">
+	<table id="myTable" class="cell-border hover stripe" style="width:100%">
+		<thead>
+			<tr>
+				<th>{% trans "datep" %}</th>
+				<th>{% trans "user" %}</th>
+				<th>{% trans "teststask" %}</th>
+				<th>{% trans "result" %}</th>
+				<th>{% trans "details" %}</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for p in protocol %}
+			<tr>
+				<td>{{ p.datep }}</td>
+				<td>{{ p.user }}</td>
+				<td>{{ p.teststask }}</td>
+				<td>{{ p.result }}</td>
+				<td>{{ p.details }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+
+{% endif %}
+{% endblock content %}
+
